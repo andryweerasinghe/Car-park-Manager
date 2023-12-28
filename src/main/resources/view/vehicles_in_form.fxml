@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="595.0" prefWidth="1070.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.carparkManager.controller.VehiclesInFormController">
+   <children>
+      <VBox prefHeight="452.0" prefWidth="148.0" />
+      <TableView fx:id="tblVehiclesIn" layoutX="22.0" layoutY="22.0" prefHeight="552.0" prefWidth="1027.0">
+        <columns>
+          <TableColumn fx:id="columnId" prefWidth="145.0" text="Parking ID" />
+          <TableColumn fx:id="columnSlot" prefWidth="220.0" text="Reserved Slot" />
+            <TableColumn fx:id="columnOwner" prefWidth="220.0" text="Owner's Name" />
+            <TableColumn fx:id="columnVehicleNo" minWidth="0.0" prefWidth="220.0" text="Vehicle Reg No." />
+            <TableColumn fx:id="columnAction" minWidth="0.0" prefWidth="220.0" text="Action" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>
