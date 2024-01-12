@@ -5,9 +5,11 @@
 
  */
 
-package lk.ijse.carparkManager.dao;
+package lk.ijse.carparkManager.dao.Custom.Impl;
 
 import com.jfoenix.controls.JFXButton;
+import lk.ijse.carparkManager.dao.Custom.ParkingSpaceDAO;
+import lk.ijse.carparkManager.dao.SQLUtil;
 import lk.ijse.carparkManager.db.DbConnection;
 
 import java.sql.Connection;
@@ -17,15 +19,11 @@ import java.sql.SQLException;
 
 public class ParkingSpaceDAOImpl implements ParkingSpaceDAO {
     public void assignSlot(JFXButton[] buttonsArray) throws SQLException, ClassNotFoundException {
-        Connection connection = DbConnection.getInstance().getConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement("SELECT id, status FROM ParkingSpace");
-        ResultSet resultSet = preparedStatement.executeQuery();
+        ResultSet resultSet = SQLUtil.execute("SELECT id, status FROM ParkingSpace");
 
         while (resultSet.next()) {
             int id = resultSet.getInt("id");
             String status = resultSet.getString("status");
-
-            // Use the id and status to update buttons in the array
             updateButtonStatus(buttonsArray[id - 1], status);
         }
     }

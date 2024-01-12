@@ -1,6 +1,8 @@
-package lk.ijse.carparkManager.dao;
+package lk.ijse.carparkManager.dao.Custom;
 
 import com.jfoenix.controls.JFXButton;
+import lk.ijse.carparkManager.dao.CrudDAO;
+import lombok.experimental.SuperBuilder;
 
 import java.sql.SQLException;
 
