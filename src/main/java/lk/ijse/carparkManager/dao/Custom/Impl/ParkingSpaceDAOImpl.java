@@ -11,6 +11,7 @@ import com.jfoenix.controls.JFXButton;
 import lk.ijse.carparkManager.dao.Custom.ParkingSpaceDAO;
 import lk.ijse.carparkManager.dao.SQLUtil;
 import lk.ijse.carparkManager.db.DbConnection;
+import lk.ijse.carparkManager.entity.ParkingSpace;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -37,34 +38,36 @@ public class ParkingSpaceDAOImpl implements ParkingSpaceDAO {
         }
     }
 
-    public void updateSlotStatusById(String slotId) throws SQLException, ClassNotFoundException {
-        Connection connection = DbConnection.getInstance().getConnection();
-
-        //Updating the status column based on the id
-        PreparedStatement preparedStatement = connection.prepareStatement("UPDATE ParkingSpace SET status = ? WHERE id = ?");
-        preparedStatement.setString(1, "occupied");
-        preparedStatement.setInt(2, Integer.parseInt(slotId));
-        preparedStatement.executeUpdate();
-
+    public void updateSlotStatus(int slotId) throws SQLException, ClassNotFoundException {
+        SQLUtil.execute("UPDATE ParkingSpace SET status = ? WHERE id = ?", slotId);
     }
 
     public void updateSlotVacant(int slotId) throws SQLException, ClassNotFoundException {
-        Connection connection = DbConnection.getInstance().getConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement("UPDATE ParkingSpace SET status = ? WHERE id = ?");
-        preparedStatement.setString(1, "Vacant");
-        preparedStatement.setInt(2, slotId);
-        preparedStatement.executeUpdate();
+        String status = "Available";
+        SQLUtil.execute("UPDATE ParkingSpace SET status = ? WHERE id = ?",status, slotId);
     }
     public boolean checkStatus(int slotId) throws SQLException, ClassNotFoundException {
-        Connection connection = DbConnection.getInstance().getConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement("SELECT status FROM ParkingSpace WHERE id = ?");
-        preparedStatement.setInt(1, slotId);
+        ResultSet resultSet = SQLUtil.execute("SELECT status FROM ParkingSpace WHERE id = ?", slotId);
 
-        ResultSet resultSet = preparedStatement.executeQuery();
         if (resultSet.next()) {
             String status = resultSet.getString("status");
             return "occupied".equalsIgnoreCase(status);
         }
+        return false;
+    }
+
+    @Override
+    public boolean save(ParkingSpace dto) throws SQLException, ClassNotFoundException {
+        return false;
+    }
+
+    @Override
+    public String generateNextId() throws SQLException, ClassNotFoundException {
+        return null;
+    }
+
+    @Override
+    public boolean isValid(String userName, String pw) throws SQLException, ClassNotFoundException {
         return false;
     }
 }

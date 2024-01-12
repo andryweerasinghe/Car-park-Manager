@@ -14,12 +14,14 @@ public class BOFactory {
     }
     public static BOFactory getBoFactory(){ return (boFactory == null)?boFactory=new BOFactory():boFactory;}
     public enum BOTypes{
-        PLACE_ORDER
+        ADD_VEHICLE, VEHICLES_IN
     }
     public SuperBO getBO(BOTypes boTypes) {
         switch (boTypes) {
-            case PLACE_ORDER:
+            case ADD_VEHICLE:
                 return new AddVehicleBoImpl();
+            case VEHICLES_IN:
+                return new InVehiclesBoImpl();
             default:
                 return null;
         }

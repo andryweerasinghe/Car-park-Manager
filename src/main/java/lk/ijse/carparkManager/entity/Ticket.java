@@ -8,21 +8,26 @@
 package lk.ijse.carparkManager.entity;
 
 public class Ticket {
-    int ticket_id;
+    String ticket_id;
     String status;
     String duration;
 
-    public Ticket(int ticket_id, String status, String duration) {
+    public Ticket(String ticket_id, String status, String duration) {
         this.ticket_id = ticket_id;
         this.status = status;
         this.duration = duration;
     }
 
-    public int getTicket_id() {
+    public Ticket(String ticketId, String status) {
+        this.ticket_id = ticketId;
+        this.status = status;
+    }
+
+    public String getTicket_id() {
         return ticket_id;
     }
 
-    public void setTicket_id(int ticket_id) {
+    public void setTicket_id(String ticket_id) {
         this.ticket_id = ticket_id;
     }
 

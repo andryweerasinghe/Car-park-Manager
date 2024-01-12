@@ -20,13 +20,13 @@ import java.sql.SQLException;
 
 public class TicketDAOImpl implements TicketDAO {
 
-    public boolean saveCheckOut(Ticket ticketDTO) throws SQLException, ClassNotFoundException {
-        return SQLUtil.execute("UPDATE Ticket SET duration = ?, status = ? WHERE id = ?",ticketDTO.getDuration(),ticketDTO.getStatus(),ticketDTO.getTicket_id());
+    public boolean saveCheckOut(Ticket ticket) throws SQLException, ClassNotFoundException {
+        return SQLUtil.execute("UPDATE Ticket SET duration = ?, status = ? WHERE id = ?",ticket.getDuration(),ticket.getStatus(),ticket.getTicket_id());
     }
 
     @Override
-    public boolean save(Ticket entity) throws SQLException, ClassNotFoundException {
-        return SQLUtil.execute("INSERT INTO Ticket (id, status) VALUES (?,?)",entity.getTicket_id(),entity.getStatus());
+    public boolean save(Ticket ticket) throws SQLException, ClassNotFoundException {
+        return SQLUtil.execute("INSERT INTO Ticket (id, status) VALUES (?,?)",ticket.getTicket_id(),ticket.getStatus());
     }
 
     public String generateNextId() throws SQLException, ClassNotFoundException {

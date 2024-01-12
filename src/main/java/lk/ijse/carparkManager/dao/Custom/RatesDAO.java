@@ -5,6 +5,6 @@ import lk.ijse.carparkManager.entity.Rates;
 
 import java.sql.SQLException;
 
-public interface RatesDAO  {
+public interface RatesDAO extends CrudDAO<Rates>{
     double getRate(String type) throws SQLException, ClassNotFoundException;
 }

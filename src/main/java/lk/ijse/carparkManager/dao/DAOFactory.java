@@ -7,10 +7,7 @@
 
 package lk.ijse.carparkManager.dao;
 
-import lk.ijse.carparkManager.dao.Custom.Impl.RatesDAOImpl;
-import lk.ijse.carparkManager.dao.Custom.Impl.TicketDAOImpl;
-import lk.ijse.carparkManager.dao.Custom.Impl.UserDAOImpl;
-import lk.ijse.carparkManager.dao.Custom.Impl.VehicleDAOImpl;
+import lk.ijse.carparkManager.dao.Custom.Impl.*;
 
 public class DAOFactory {
     private static DAOFactory daoFactory;
@@ -21,7 +18,7 @@ public class DAOFactory {
         return (daoFactory == null)?daoFactory=new DAOFactory():daoFactory;
     }
     public enum DAOTypes{
-        USER, VEHICLE, TICKET, RATES
+        USER, VEHICLE, TICKET, RATES, PARKING_SPACE, TICKET_SPACE_DETAILS, VEHICLE_TICKET_DETAILS, PAYMENTS
     }
     public CrudDAO getDAO(DAOTypes daoTypes){
         switch (daoTypes){
@@ -33,6 +30,14 @@ public class DAOFactory {
                 return new TicketDAOImpl();
             case RATES:
                 return new RatesDAOImpl();
+            case PARKING_SPACE:
+                return new ParkingSpaceDAOImpl();
+            case TICKET_SPACE_DETAILS:
+                return new TicketSpaceDetailsDAOImpl();
+            case VEHICLE_TICKET_DETAILS:
+                return new VehicleTicketDetailsDAOImpl();
+            case PAYMENTS:
+                return new PaymentsDAOImpl();
             default:
                 return null;
         }

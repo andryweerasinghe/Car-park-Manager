@@ -10,6 +10,7 @@ package lk.ijse.carparkManager.dao.Custom.Impl;
 import lk.ijse.carparkManager.dao.Custom.RatesDAO;
 import lk.ijse.carparkManager.dao.SQLUtil;
 import lk.ijse.carparkManager.db.DbConnection;
+import lk.ijse.carparkManager.entity.Rates;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,15 +19,21 @@ import java.sql.SQLException;
 
 public class RatesDAOImpl implements RatesDAO {
     public double getRate(String type) throws SQLException, ClassNotFoundException {
-//        Connection connection = DbConnection.getInstance().getConnection();
-//        PreparedStatement preparedStatement = connection.prepareStatement("SELECT rate_per_hour FROM Rates WHERE vehicle_type = ?");
-//        preparedStatement.setString(1, type); // Set the vehicle type
+        return SQLUtil.execute("SELECT rate_per_hour FROM Rates WHERE vehicle_type = ?", type);
+    }
 
-        ResultSet resultSet = SQLUtil.execute("SELECT rate_per_hour FROM Rates WHERE vehicle_type = ?");
+    @Override
+    public boolean save(Rates dto) throws SQLException, ClassNotFoundException {
+        return false;
+    }
 
-        if (resultSet.next()) {
-            return resultSet.getDouble("rate_per_hour");
-        }
-        return 0.0;
+    @Override
+    public String generateNextId() throws SQLException, ClassNotFoundException {
+        return null;
+    }
+
+    @Override
+    public boolean isValid(String userName, String pw) throws SQLException, ClassNotFoundException {
+        return false;
     }
 }

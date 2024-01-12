@@ -8,5 +8,5 @@ import lk.ijse.carparkManager.entity.Ticket;
 import java.sql.SQLException;
 
 public interface TicketDAO extends CrudDAO<Ticket> {
-    boolean saveCheckOut(Ticket ticketDTO) throws SQLException, ClassNotFoundException;
+    boolean saveCheckOut(Ticket ticket) throws SQLException, ClassNotFoundException;
 }

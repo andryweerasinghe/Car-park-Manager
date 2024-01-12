@@ -31,11 +31,11 @@ public class VehicleDAOImpl implements VehicleDAO {
     }
 
     public boolean isAvailableSlot(String slotId) throws SQLException, ClassNotFoundException {
-        return SQLUtil.execute("SELECT slot_id FROM Vehicle WHERE slot_id = ?");
+        return SQLUtil.execute("SELECT slot_id FROM Vehicle WHERE slot_id = ?",slotId);
     }
 
     public VehicleDTO retrieveType(String id) throws SQLException, ClassNotFoundException {
-        ResultSet resultSet = SQLUtil.execute("SELECT type, date FROM Vehicle WHERE id = ?");
+        ResultSet resultSet = SQLUtil.execute("SELECT type, date FROM Vehicle WHERE id = ?",id);
         if (resultSet.next()) {
             String type = resultSet.getString("type");
             String date = resultSet.getString("date");
@@ -44,7 +44,7 @@ public class VehicleDAOImpl implements VehicleDAO {
         return null;
     }
     public void deleteVehicleRecord(String id) throws SQLException, ClassNotFoundException {
-        SQLUtil.execute("DELETE FROM Vehicle WHERE id = ?");
+        SQLUtil.execute("DELETE FROM Vehicle WHERE id = ?",id);
     }
     public int getCount() throws SQLException, ClassNotFoundException {
         int count = 0;
@@ -59,7 +59,7 @@ public class VehicleDAOImpl implements VehicleDAO {
     }
 
     public Vehicle getVehicleDetails(int slotId) throws SQLException, ClassNotFoundException {
-        ResultSet resultSet = SQLUtil.execute("SELECT id, vehicle_no, type, vehicle_owner, slot_id, brand, mobile_no FROM Vehicle WHERE slot_id = ?");
+        ResultSet resultSet = SQLUtil.execute("SELECT id, vehicle_no, type, vehicle_owner, slot_id, brand, mobile_no FROM Vehicle WHERE slot_id = ?",slotId);
 
         if (resultSet.next()) {
 
@@ -79,12 +79,12 @@ public class VehicleDAOImpl implements VehicleDAO {
 
     @Override
     public boolean save(Vehicle vehicle) throws SQLException, ClassNotFoundException {
-        return SQLUtil.execute("INSERT INTO Vehicle VALUES (?,?,?,?,?,?,?,?)");
+        return SQLUtil.execute("INSERT INTO Vehicle VALUES (?,?,?,?,?,?,?,?)",vehicle);
     }
 
     @Override
     public String generateNextId() throws SQLException, ClassNotFoundException {
-        ResultSet resultSet = SQLUtil.execute("SELECT id FROM Vehicle ORDER BY code DESC LIMIT 1");
+        ResultSet resultSet = SQLUtil.execute("SELECT id FROM Vehicle ORDER BY id DESC LIMIT 1");
         if (resultSet.next()){
             String code = resultSet.getString("id");
             int newVehicleId = Integer.parseInt(code.replace("V00-", "")) + 1;
