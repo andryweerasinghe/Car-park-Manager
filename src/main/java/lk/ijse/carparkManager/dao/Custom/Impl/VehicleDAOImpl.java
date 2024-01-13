@@ -58,12 +58,12 @@ public class VehicleDAOImpl implements VehicleDAO {
         return count;
     }
 
-    public Vehicle getVehicleDetails(int slotId) throws SQLException, ClassNotFoundException {
+    public VehicleDTO getVehicleDetails(int slotId) throws SQLException, ClassNotFoundException {
         ResultSet resultSet = SQLUtil.execute("SELECT id, vehicle_no, type, vehicle_owner, slot_id, brand, mobile_no FROM Vehicle WHERE slot_id = ?",slotId);
 
         if (resultSet.next()) {
 
-            return new Vehicle(
+            return new VehicleDTO(
                     resultSet.getString("id"),
                     resultSet.getString("vehicle_no"),
                     resultSet.getString("type"),

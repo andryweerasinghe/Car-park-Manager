@@ -27,7 +27,7 @@ public class UserBoImpl implements UserBo{
     }
 
     @Override
-    public String generateNextId() throws SQLException, ClassNotFoundException {
+    public String generateNextUserId() throws SQLException, ClassNotFoundException {
         return userDAO.generateNextId();
     }
 

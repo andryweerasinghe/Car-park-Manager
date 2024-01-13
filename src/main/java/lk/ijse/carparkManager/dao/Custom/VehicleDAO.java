@@ -13,5 +13,5 @@ public interface VehicleDAO extends CrudDAO<Vehicle> {
     VehicleDTO retrieveType(String id) throws SQLException, ClassNotFoundException;
     void deleteVehicleRecord(String id) throws SQLException, ClassNotFoundException;
     int getCount() throws SQLException, ClassNotFoundException;
-    Vehicle getVehicleDetails(int slotId) throws SQLException, ClassNotFoundException;
+    VehicleDTO getVehicleDetails(int slotId) throws SQLException, ClassNotFoundException;
 }

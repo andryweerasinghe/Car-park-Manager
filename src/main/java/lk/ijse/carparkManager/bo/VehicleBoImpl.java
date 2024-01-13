@@ -46,13 +46,7 @@ public class VehicleBoImpl implements VehicleBo {
     public VehicleDTO loadAllVehicleDetails(int slotId) throws SQLException, ClassNotFoundException {
         return vehicleDAO.getVehicleDetails(slotId);
     }
-
-    public boolean saveVehicle(VehicleDTO vehicleDTO) throws SQLException, ClassNotFoundException {
-        Vehicle vehicle = new Vehicle(vehicleDTO.getId(), vehicleDTO.getVehicle_no(), vehicleDTO.getType(), vehicleDTO.getVehicle_owner(), vehicleDTO.getSlot_id(), vehicleDTO.getBrand(), vehicleDTO.getMobile_no(), vehicleDTO.getDate());
-        return vehicleDAO.save(vehicle);
-    }
-
-    public String generateNextVehicleId() throws SQLException, ClassNotFoundException {
-        return vehicleDAO.generateNextId();
+    public VehicleDTO getVehicleDetails(int slotId) throws SQLException, ClassNotFoundException {
+        return vehicleDAO.getVehicleDetails(slotId);
     }
 }
