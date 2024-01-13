@@ -19,7 +19,11 @@ import java.sql.SQLException;
 
 public class RatesDAOImpl implements RatesDAO {
     public double getRate(String type) throws SQLException, ClassNotFoundException {
-        return SQLUtil.execute("SELECT rate_per_hour FROM Rates WHERE vehicle_type = ?", type);
+        ResultSet resultSet = SQLUtil.execute("SELECT rate_per_hour FROM Rates WHERE vehicle_type = ?", type);
+        if (resultSet.next()) {
+            return resultSet.getDouble("rate_per_hour");
+        }
+        return -1;
     }
 
     @Override

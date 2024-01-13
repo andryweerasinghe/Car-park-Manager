@@ -39,7 +39,7 @@ public class ParkingSpaceDAOImpl implements ParkingSpaceDAO {
     }
 
     public void updateSlotStatus(int slotId) throws SQLException, ClassNotFoundException {
-        SQLUtil.execute("UPDATE ParkingSpace SET status = ? WHERE id = ?", slotId);
+        SQLUtil.execute("UPDATE ParkingSpace SET status = ? WHERE id = ?","Occupied", slotId);
     }
 
     public void updateSlotVacant(int slotId) throws SQLException, ClassNotFoundException {

@@ -37,11 +37,12 @@ public class UserDAOImpl implements UserDAO {
         return SQLUtil.execute("SELECT * FROM User WHERE user_name = ? AND password = ?");
     }
     public boolean login(LoginDTO loginDTO) throws SQLException, ClassNotFoundException {
-        return SQLUtil.execute("SELECT * FROM User WHERE password=? AND user_name=?");
+        ResultSet resultSet = SQLUtil.execute("SELECT * FROM User WHERE user_name=? AND password=?", loginDTO.getPassword(), loginDTO.getUsername());
+        return resultSet.next();
     }
 
     public LoginDTO getUserInfo(String userName) throws SQLException, ClassNotFoundException {
-        ResultSet resultSet = SQLUtil.execute("SELECT * FROM User WHERE user_name=?");
+        ResultSet resultSet = SQLUtil.execute("SELECT * FROM User WHERE user_name=?", userName);
         if (resultSet.next()) {
             String retrievedUserName = resultSet.getString("user_name");
             return new LoginDTO(retrievedUserName);

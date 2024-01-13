@@ -11,24 +11,24 @@ import java.time.LocalTime;
 
 public class TicketSpaceDetails {
     String ticket_id;
-    String space_id;
+    int space_id;
     LocalTime entry_time;
     LocalTime exit_time;
 
-    public TicketSpaceDetails(String ticket_id, String space_id, LocalTime entry_time, LocalTime exit_time) {
+    public TicketSpaceDetails(String ticket_id, int space_id, LocalTime entry_time, LocalTime exit_time) {
         this.ticket_id = ticket_id;
         this.space_id = space_id;
         this.entry_time = entry_time;
         this.exit_time = exit_time;
     }
 
-    public TicketSpaceDetails(String ticketId, String spaceId, LocalTime entryTime) {
+    public TicketSpaceDetails(String ticketId, int spaceId, LocalTime entryTime) {
         this.ticket_id = ticketId;
         this.space_id = spaceId;
         this.entry_time = entryTime;
     }
 
-    public TicketSpaceDetails(String spaceId, LocalTime exitTime) {
+    public TicketSpaceDetails(int spaceId, LocalTime exitTime) {
         this.space_id = spaceId;
         this.exit_time = exitTime;
     }
@@ -41,11 +41,11 @@ public class TicketSpaceDetails {
         this.ticket_id = ticket_id;
     }
 
-    public String getSpace_id() {
+    public int getSpace_id() {
         return space_id;
     }
 
-    public void setSpace_id(String space_id) {
+    public void setSpace_id(int space_id) {
         this.space_id = space_id;
     }
 

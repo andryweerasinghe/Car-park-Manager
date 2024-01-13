@@ -18,7 +18,7 @@ public class DAOFactory {
         return (daoFactory == null)?daoFactory=new DAOFactory():daoFactory;
     }
     public enum DAOTypes{
-        USER, VEHICLE, TICKET, RATES, PARKING_SPACE, TICKET_SPACE_DETAILS, VEHICLE_TICKET_DETAILS, PAYMENTS
+        USER, VEHICLE, TICKET, RATES, PARKING_SPACE, TICKET_SPACE_DETAILS, PAYMENTS, OUTGOING_VEHICLES
     }
     public CrudDAO getDAO(DAOTypes daoTypes){
         switch (daoTypes){
@@ -34,10 +34,10 @@ public class DAOFactory {
                 return new ParkingSpaceDAOImpl();
             case TICKET_SPACE_DETAILS:
                 return new TicketSpaceDetailsDAOImpl();
-            case VEHICLE_TICKET_DETAILS:
-                return new VehicleTicketDetailsDAOImpl();
             case PAYMENTS:
                 return new PaymentsDAOImpl();
+            case OUTGOING_VEHICLES:
+                return new OutgoingVehiclesDAOImpl();
             default:
                 return null;
         }

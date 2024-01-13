@@ -28,6 +28,9 @@ public class TicketDAOImpl implements TicketDAO {
     public boolean save(Ticket ticket) throws SQLException, ClassNotFoundException {
         return SQLUtil.execute("INSERT INTO Ticket (id, status) VALUES (?,?)",ticket.getTicket_id(),ticket.getStatus());
     }
+    public ResultSet getTicketData(int slot_id) throws SQLException, ClassNotFoundException {
+        return SQLUtil.execute("SELECT * FROM Ticket WHERE slot_id = ?", slot_id);
+    }
 
     public String generateNextId() throws SQLException, ClassNotFoundException {
         ResultSet resultSet = SQLUtil.execute("SELECT id FROM Ticket ORDER BY id DESC LIMIT 1");

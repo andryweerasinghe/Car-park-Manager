@@ -10,17 +10,13 @@ package lk.ijse.carparkManager.bo;
 import lk.ijse.carparkManager.dao.Custom.*;
 import lk.ijse.carparkManager.dao.DAOFactory;
 import lk.ijse.carparkManager.dao.SQLUtil;
-import lk.ijse.carparkManager.dto.PaymentsDTO;
-import lk.ijse.carparkManager.dto.TicketDTO;
-import lk.ijse.carparkManager.dto.TicketSpaceDetailsDTO;
-import lk.ijse.carparkManager.dto.VehicleDTO;
-import lk.ijse.carparkManager.entity.Payment;
-import lk.ijse.carparkManager.entity.Ticket;
-import lk.ijse.carparkManager.entity.TicketSpaceDetails;
+import lk.ijse.carparkManager.dto.*;
+import lk.ijse.carparkManager.entity.*;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalTime;
+import java.util.ArrayList;
 
 public class InVehiclesBoImpl implements InVehiclesBo{
     TicketDAO ticketDAO = (TicketDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.TICKET);
@@ -28,8 +24,8 @@ public class InVehiclesBoImpl implements InVehiclesBo{
     ParkingSpaceDAO parkingSpaceDAO = (ParkingSpaceDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.PARKING_SPACE);
     RatesDAO ratesDAO = (RatesDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.RATES);
     PaymentsDAO paymentsDAO = (PaymentsDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.PAYMENTS);
-    VehicleTicketDetailsDAO vehicleTicketDetailsDAO = (VehicleTicketDetailsDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.VEHICLE_TICKET_DETAILS);
     VehicleDAO vehicleDAO = (VehicleDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.VEHICLE);
+    OutgoingVehiclesDAO outgoingVehiclesDAO = (OutgoingVehiclesDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.OUTGOING_VEHICLES);
     public boolean saveDuration(TicketDTO ticketDTO) throws SQLException, ClassNotFoundException {
         Ticket ticket = new Ticket(ticketDTO.getTicket_id(), ticketDTO.getStatus(), ticketDTO.getDuration());
         return ticketDAO.saveCheckOut(ticket);
@@ -55,12 +51,27 @@ public class InVehiclesBoImpl implements InVehiclesBo{
         return paymentsDAO.save(payment);
     }
     public String getTicketId(String vehicleId) throws SQLException, ClassNotFoundException {
-        return vehicleTicketDetailsDAO.getTicketId(vehicleId);
+        return ticketSpaceDetailsDAO.getTicketId(vehicleId);
     }
     public VehicleDTO retrieveType(String id) throws SQLException, ClassNotFoundException {
         return vehicleDAO.retrieveType(id);
     }
     public void deleteVehicleRecord(String id) throws SQLException, ClassNotFoundException {
         vehicleDAO.deleteVehicleRecord(id);
+    }
+    public ArrayList<VehicleDTO> getVehicleData() throws SQLException, ClassNotFoundException {
+        ArrayList<Vehicle> vehicles = vehicleDAO.getAll();
+        ArrayList<VehicleDTO> vehicleDTOS = new ArrayList<>();
+        for(Vehicle vehicle:vehicles){
+            vehicleDTOS.add(new VehicleDTO(vehicle.getId(), vehicle.getSlot_id(), vehicle.getVehicle_owner(), vehicle.getVehicle_no()));
+        }
+        return vehicleDTOS;
+    }
+    public boolean saveCheckoutVehicle(OutgoingVehiclesDTO outgoingVehiclesDTO) throws SQLException, ClassNotFoundException {
+        OutgoingVehicles outgoingVehicles = new OutgoingVehicles(outgoingVehiclesDTO.getOutgoing_vehicle_id(), outgoingVehiclesDTO.getVehicle_no(), outgoingVehiclesDTO.getType(), outgoingVehiclesDTO.getVehicle_owner(), outgoingVehiclesDTO.getSlot_id(), outgoingVehiclesDTO.getDuration(), outgoingVehiclesDTO.getParking_fee(), outgoingVehiclesDTO.getTicket_id(), outgoingVehiclesDTO.getDate());
+        return outgoingVehiclesDAO.save(outgoingVehicles);
+    }
+    public ResultSet getTicketData(int slot_id) throws SQLException, ClassNotFoundException {
+        return outgoingVehiclesDAO.getTicketData(slot_id);
     }
 }

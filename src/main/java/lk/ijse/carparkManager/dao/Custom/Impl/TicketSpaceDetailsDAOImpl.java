@@ -35,6 +35,15 @@ public class TicketSpaceDetailsDAOImpl implements TicketSpaceDetailsDAO {
     }
 
     @Override
+    public String getTicketId(String slot_id) throws SQLException, ClassNotFoundException {
+        ResultSet resultSet = SQLUtil.execute("SELECT ticket_id FROM TicketSpaceDetails WHERE space_id = ?", Integer.parseInt(slot_id));
+        if (resultSet.next()){
+            return resultSet.getString("ticket_id");
+        }
+        return null;
+    }
+
+    @Override
     public boolean save(TicketSpaceDetails dto) throws SQLException, ClassNotFoundException {
         return false;
     }

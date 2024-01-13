@@ -30,8 +30,9 @@ public class VehicleDAOImpl implements VehicleDAO {
         return vehicleDTOArrayList;
     }
 
-    public boolean isAvailableSlot(String slotId) throws SQLException, ClassNotFoundException {
-        return SQLUtil.execute("SELECT slot_id FROM Vehicle WHERE slot_id = ?",slotId);
+    public boolean isAvailableSlot(int slotId) throws SQLException, ClassNotFoundException {
+        ResultSet resultSet = SQLUtil.execute("SELECT slot_id FROM Vehicle WHERE slot_id = ?",slotId);
+        return resultSet.next();
     }
 
     public VehicleDTO retrieveType(String id) throws SQLException, ClassNotFoundException {
@@ -58,12 +59,12 @@ public class VehicleDAOImpl implements VehicleDAO {
         return count;
     }
 
-    public Vehicle getVehicleDetails(int slotId) throws SQLException, ClassNotFoundException {
+    public VehicleDTO getVehicleDetails(int slotId) throws SQLException, ClassNotFoundException {
         ResultSet resultSet = SQLUtil.execute("SELECT id, vehicle_no, type, vehicle_owner, slot_id, brand, mobile_no FROM Vehicle WHERE slot_id = ?",slotId);
 
         if (resultSet.next()) {
 
-            return new Vehicle(
+            return new VehicleDTO(
                     resultSet.getString("id"),
                     resultSet.getString("vehicle_no"),
                     resultSet.getString("type"),
@@ -79,7 +80,7 @@ public class VehicleDAOImpl implements VehicleDAO {
 
     @Override
     public boolean save(Vehicle vehicle) throws SQLException, ClassNotFoundException {
-        return SQLUtil.execute("INSERT INTO Vehicle VALUES (?,?,?,?,?,?,?,?)",vehicle);
+        return SQLUtil.execute("INSERT INTO Vehicle VALUES (?,?,?,?,?,?,?,?)",vehicle.getId(), vehicle.getVehicle_no(), vehicle.getType(), vehicle.getVehicle_owner(), Integer.parseInt(vehicle.getSlot_id()), vehicle.getBrand(), vehicle.getMobile_no(), vehicle.getDate());
     }
 
     @Override

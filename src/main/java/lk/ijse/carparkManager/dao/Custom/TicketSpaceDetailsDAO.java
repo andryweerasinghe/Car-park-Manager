@@ -12,4 +12,5 @@ public interface TicketSpaceDetailsDAO extends CrudDAO<TicketSpaceDetails> {
     void saveCheckIn(TicketSpaceDetails ticketSpaceDetails) throws SQLException, ClassNotFoundException;
     void saveCheckOut(TicketSpaceDetails ticketSpaceDetails) throws SQLException, ClassNotFoundException;
     LocalTime getEntryTimeForVehicle(String id) throws SQLException, ClassNotFoundException;
+    String getTicketId(String slot_id) throws SQLException, ClassNotFoundException;
 }
