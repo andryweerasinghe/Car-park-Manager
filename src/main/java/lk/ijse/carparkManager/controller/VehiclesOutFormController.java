@@ -15,10 +15,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import lk.ijse.carparkManager.bo.BOFactory;
+import lk.ijse.carparkManager.bo.VehicleBo;
 import lk.ijse.carparkManager.dto.OutgoingVehiclesDTO;
-import lk.ijse.carparkManager.model.OutgoingVehiclesModel;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class VehiclesOutFormController implements Initializable {
@@ -41,11 +43,16 @@ public class VehiclesOutFormController implements Initializable {
     @FXML
     private TableView<OutgoingVehiclesDTO> tblVehicleOut;
 
-    private final OutgoingVehiclesModel outgoingVehiclesModel = new OutgoingVehiclesModel();
+    VehicleBo vehicleBo = (VehicleBo) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.VEHICLE);
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        ObservableList<OutgoingVehiclesDTO> list =FXCollections.observableArrayList(outgoingVehiclesModel.getCheckOutData());
+        ObservableList<OutgoingVehiclesDTO> list = null;
+        try {
+            list = FXCollections.observableArrayList(vehicleBo.getCheckOutData());
+        } catch (SQLException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
 
         checkoutId.setCellValueFactory(cellData -> cellData.getValue().outgoing_vehicle_idProperty());
         columnSlot.setCellValueFactory(cellData -> cellData.getValue().slot_idProperty());

@@ -15,7 +15,7 @@ public class RegistrationDTO {
     String userName;
     String email;
     String password;
-    int mobile;
+    String mobile;
 
     public String getUserName() {
         return userName;
@@ -42,7 +42,7 @@ public class RegistrationDTO {
     public RegistrationDTO() {
     }
 
-    public RegistrationDTO(String id, String name, String jobRole, String email, int mobile, String password, String userName) {
+    public RegistrationDTO(String id, String name, String jobRole, String email, String mobile, String password, String userName) {
         this.id = id;
         this.name = name;
         this.jobRole = jobRole;
@@ -84,11 +84,11 @@ public class RegistrationDTO {
         this.email = email;
     }
 
-    public int getMobile() {
+    public String getMobile() {
         return mobile;
     }
 
-    public void setMobile(int mobile) {
+    public void setMobile(String mobile) {
         this.mobile = mobile;
     }
 

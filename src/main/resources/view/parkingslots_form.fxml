@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.effect.MotionBlur?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="1070.0" spacing="3.0" style="-fx-background-color: #CCDBDC;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.carparkManager.controller.ParkingSlotFormController">
+   <children>
+      <VBox alignment="CENTER" prefHeight="680.0" prefWidth="175.0" spacing="10.0">
+         <children>
+            <JFXButton fx:id="btnSlot1" onAction="#btnSlot1OnAction" prefHeight="120.0" prefWidth="105.0" style="-fx-background-color: #3c6382;" styleClass="button-style" stylesheets="@../cssFiles/buttonStyle.css" text="Available" textFill="#CCDBDC">
+               <font>
+                  <Font name="Serif Bold" size="13.0" />
+               </font>
+               <effect>
+                  <MotionBlur />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton fx:id="btnSlot7" layoutX="25.0" layoutY="216.0" onAction="#btnSlot7OnAction" prefHeight="120.0" prefWidth="105.0" style="-fx-background-color: #3c6382;" styleClass="button-style" stylesheets="@../cssFiles/buttonStyle.css" text="Available" textFill="#CCDBDC">
+               <font>
+                  <Font name="Serif Bold" size="13.0" />
+               </font>
+               <effect>
+                  <MotionBlur />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton fx:id="btnSlot13" layoutX="25.0" layoutY="260.0" onAction="#btnSlot13OnAction" prefHeight="120.0" prefWidth="105.0" style="-fx-background-color: #3c6382;" styleClass="button-style" stylesheets="@../cssFiles/buttonStyle.css" text="Available" textFill="#CCDBDC">
+               <font>
+                  <Font name="Serif Bold" size="13.0" />
+               </font>
+               <effect>
+                  <MotionBlur />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton fx:id="btnSlot19" layoutX="25.0" layoutY="304.0" onAction="#btnSlot19OnAction" prefHeight="120.0" prefWidth="105.0" style="-fx-background-color: #3c6382;" styleClass="button-style" stylesheets="@../cssFiles/buttonStyle.css" text="Available" textFill="#CCDBDC">
+               <font>
+                  <Font name="Serif Bold" size="13.0" />
+               </font>
+               <effect>
+                  <MotionBlur />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton fx:id="btnSlot25" layoutX="25.0" layoutY="348.0" onAction="#btnSlot25OnAction" prefHeight="120.0" prefWidth="105.0" style="-fx-background-color: #3c6382;" styleClass="button-style" stylesheets="@../cssFiles/buttonStyle.css" text="Available" textFill="#CCDBDC">
+               <font>
+                  <Font name="Serif Bold" size="13.0" />
+               </font>
+               <effect>
+                  <MotionBlur />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+         </children>
+      </VBox>
+      <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="175.0" spacing="10.0">
+         <children>
+            <JFXButton fx:id="btnSlot2" onAction="#btnSlot2OnAction" prefHeight="120.0" prefWidth="105.0" style="-fx-background-color: #3c6382;" styleClass="button-style" stylesheets="@../cssFiles/buttonStyle.css" text="Available" textFill="#CCDBDC">
+               <font>
+                  <Font name="Serif Bold" size="13.0" />
+               </font>
+               <effect>
+                  <MotionBlur />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton fx:id="btnSlot8" layoutX="25.0" layoutY="216.0" onAction="#btnSlot8OnAction" prefHeight="120.0" prefWidth="105.0" style="-fx-background-color: #3c6382;" styleClass="button-style" stylesheets="@../cssFiles/buttonStyle.css" text="Available" textFill="#CCDBDC">
+               <font>
+                  <Font name="Serif Bold" size="13.0" />
+               </font>
+               <effect>
+                  <MotionBlur />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton fx:id="btnSlot14" layoutX="25.0" layoutY="260.0" onAction="#btnSlot14OnAction" prefHeight="120.0" prefWidth="105.0" style="-fx-background-color: #3c6382;" styleClass="button-style" stylesheets="@../cssFiles/buttonStyle.css" text="Available" textFill="#CCDBDC">
+               <font>
+                  <Font name="Serif Bold" size="13.0" />
+               </font>
+               <effect>
+                  <MotionBlur />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton fx:id="btnSlot20" layoutX="25.0" layoutY="304.0" onAction="#btnSlot20OnAction" prefHeight="120.0" prefWidth="105.0" style="-fx-background-color: #3c6382;" styleClass="button-style" stylesheets="@../cssFiles/buttonStyle.css" text="Available" textFill="#CCDBDC">
+               <font>
+                  <Font name="Serif Bold" size="13.0" />
+               </font>
+               <effect>
+                  <MotionBlur />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton fx:id="btnSlot26" layoutX="25.0" layoutY="348.0" onAction="#btnSlot26OnAction" prefHeight="120.0" prefWidth="105.0" style="-fx-background-color: #3c6382;" styleClass="button-style" stylesheets="@../cssFiles/buttonStyle.css" text="Available" textFill="#CCDBDC">
+               <font>
+                  <Font name="Serif Bold" size="13.0" />
+               </font>
+               <effect>
+                  <MotionBlur />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+         </children>
+      </VBox>
+      <VBox alignment="CENTER" layoutX="113.0" layoutY="10.0" prefHeight="200.0" prefWidth="175.0" spacing="10.0">
+         <children>
+            <JFXButton fx:id="btnSlot3" onAction="#btnSlot3OnAction" prefHeight="120.0" prefWidth="105.0" style="-fx-background-color: #3c6382;" styleClass="button-style" stylesheets="@../cssFiles/buttonStyle.css" text="Available" textFill="#CCDBDC">
+               <font>
+                  <Font name="Serif Bold" size="13.0" />
+               </font>
+               <effect>
+                  <MotionBlur />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton fx:id="btnSlot9" layoutX="25.0" layoutY="216.0" onAction="#btnSlot9OnAction" prefHeight="120.0" prefWidth="105.0" style="-fx-background-color: #3c6382;" styleClass="button-style" stylesheets="@../cssFiles/buttonStyle.css" text="Available" textFill="#CCDBDC">
+               <font>
+                  <Font name="Serif Bold" size="13.0" />
+               </font>
+               <effect>
+                  <MotionBlur />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton fx:id="btnSlot15" layoutX="25.0" layoutY="260.0" onAction="#btnSlot15OnAction" prefHeight="120.0" prefWidth="105.0" style="-fx-background-color: #3c6382;" styleClass="button-style" stylesheets="@../cssFiles/buttonStyle.css" text="Available" textFill="#CCDBDC">
+               <font>
+                  <Font name="Serif Bold" size="13.0" />
+               </font>
+               <effect>
+                  <MotionBlur />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton fx:id="btnSlot21" layoutX="25.0" layoutY="304.0" onAction="#btnSlot21OnAction" prefHeight="120.0" prefWidth="105.0" style="-fx-background-color: #3c6382;" styleClass="button-style" stylesheets="@../cssFiles/buttonStyle.css" text="Available" textFill="#CCDBDC">
+               <font>
+                  <Font name="Serif Bold" size="13.0" />
+               </font>
+               <effect>
+                  <MotionBlur />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton fx:id="btnSlot27" layoutX="25.0" layoutY="348.0" onAction="#btnSlot27OnAction" prefHeight="120.0" prefWidth="105.0" style="-fx-background-color: #3c6382;" styleClass="button-style" stylesheets="@../cssFiles/buttonStyle.css" text="Available" textFill="#CCDBDC">
+               <font>
+                  <Font name="Serif Bold" size="13.0" />
+               </font>
+               <effect>
+                  <MotionBlur />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+         </children>
+      </VBox>
+      <VBox alignment="CENTER" layoutX="216.0" layoutY="10.0" prefHeight="200.0" prefWidth="175.0" spacing="10.0">
+         <children>
+            <JFXButton fx:id="btnSlot4" onAction="#btnSlot4OnAction" prefHeight="120.0" prefWidth="105.0" style="-fx-background-color: #3c6382;" styleClass="button-style" stylesheets="@../cssFiles/buttonStyle.css" text="Available" textFill="#CCDBDC">
+               <font>
+                  <Font name="Serif Bold" size="13.0" />
+               </font>
+               <effect>
+                  <MotionBlur />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton fx:id="btnSlot10" layoutX="25.0" layoutY="216.0" onAction="#btnSlot10OnAction" prefHeight="120.0" prefWidth="105.0" style="-fx-background-color: #3c6382;" styleClass="button-style" stylesheets="@../cssFiles/buttonStyle.css" text="Available" textFill="#CCDBDC">
+               <font>
+                  <Font name="Serif Bold" size="13.0" />
+               </font>
+               <effect>
+                  <MotionBlur />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton fx:id="btnSlot16" layoutX="25.0" layoutY="260.0" onAction="#btnSlot16OnAction" prefHeight="120.0" prefWidth="105.0" style="-fx-background-color: #3c6382;" styleClass="button-style" stylesheets="@../cssFiles/buttonStyle.css" text="Available" textFill="#CCDBDC">
+               <font>
+                  <Font name="Serif Bold" size="13.0" />
+               </font>
+               <effect>
+                  <MotionBlur />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton fx:id="btnSlot22" layoutX="25.0" layoutY="304.0" onAction="#btnSlot22OnAction" prefHeight="120.0" prefWidth="105.0" style="-fx-background-color: #3c6382;" styleClass="button-style" stylesheets="@../cssFiles/buttonStyle.css" text="Available" textFill="#CCDBDC">
+               <font>
+                  <Font name="Serif Bold" size="13.0" />
+               </font>
+               <effect>
+                  <MotionBlur />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton fx:id="btnSlot28" layoutX="25.0" layoutY="348.0" onAction="#btnSlot28OnAction" prefHeight="120.0" prefWidth="105.0" style="-fx-background-color: #3c6382;" styleClass="button-style" stylesheets="@../cssFiles/buttonStyle.css" text="Available" textFill="#CCDBDC">
+               <font>
+                  <Font name="Serif Bold" size="13.0" />
+               </font>
+               <effect>
+                  <MotionBlur />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+         </children>
+      </VBox>
+      <VBox alignment="CENTER" layoutX="319.0" layoutY="10.0" prefHeight="200.0" prefWidth="175.0" spacing="10.0">
+         <children>
+            <JFXButton fx:id="btnSlot5" onAction="#btnSlot5OnAction" prefHeight="120.0" prefWidth="105.0" style="-fx-background-color: #3c6382;" styleClass="button-style" stylesheets="@../cssFiles/buttonStyle.css" text="Available" textFill="#CCDBDC">
+               <font>
+                  <Font name="Serif Bold" size="13.0" />
+               </font>
+               <effect>
+                  <MotionBlur />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton fx:id="btnSlot11" layoutX="25.0" layoutY="216.0" onAction="#btnSlot11OnAction" prefHeight="120.0" prefWidth="105.0" style="-fx-background-color: #3c6382;" styleClass="button-style" stylesheets="@../cssFiles/buttonStyle.css" text="Available" textFill="#CCDBDC">
+               <font>
+                  <Font name="Serif Bold" size="13.0" />
+               </font>
+               <effect>
+                  <MotionBlur />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton fx:id="btnSlot17" layoutX="25.0" layoutY="260.0" onAction="#btnSlot17OnAction" prefHeight="120.0" prefWidth="105.0" style="-fx-background-color: #3c6382;" styleClass="button-style" stylesheets="@../cssFiles/buttonStyle.css" text="Available" textFill="#CCDBDC">
+               <font>
+                  <Font name="Serif Bold" size="13.0" />
+               </font>
+               <effect>
+                  <MotionBlur />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton fx:id="btnSlot23" layoutX="25.0" layoutY="304.0" onAction="#btnSlot23OnAction" prefHeight="120.0" prefWidth="105.0" style="-fx-background-color: #3c6382;" styleClass="button-style" stylesheets="@../cssFiles/buttonStyle.css" text="Available" textFill="#CCDBDC">
+               <font>
+                  <Font name="Serif Bold" size="13.0" />
+               </font>
+               <effect>
+                  <MotionBlur />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton fx:id="btnSlot29" layoutX="25.0" layoutY="348.0" onAction="#btnSlot29OnAction" prefHeight="120.0" prefWidth="105.0" style="-fx-background-color: #3c6382;" styleClass="button-style" stylesheets="@../cssFiles/buttonStyle.css" text="Available" textFill="#CCDBDC">
+               <font>
+                  <Font name="Serif Bold" size="13.0" />
+               </font>
+               <effect>
+                  <MotionBlur />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+         </children>
+      </VBox>
+      <VBox alignment="CENTER" layoutX="422.0" layoutY="10.0" prefHeight="200.0" prefWidth="175.0" spacing="10.0">
+         <children>
+            <JFXButton fx:id="btnSlot6" onAction="#btnSlot6OnAction" prefHeight="120.0" prefWidth="105.0" style="-fx-background-color: #3c6382;" styleClass="button-style" stylesheets="@../cssFiles/buttonStyle.css" text="Available" textFill="#CCDBDC">
+               <font>
+                  <Font name="Serif Bold" size="13.0" />
+               </font>
+               <effect>
+                  <MotionBlur />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton fx:id="btnSlot12" layoutX="25.0" layoutY="216.0" onAction="#btnSlot12OnAction" prefHeight="120.0" prefWidth="105.0" style="-fx-background-color: #3c6382;" styleClass="button-style" stylesheets="@../cssFiles/buttonStyle.css" text="Available" textFill="#CCDBDC">
+               <font>
+                  <Font name="Serif Bold" size="13.0" />
+               </font>
+               <effect>
+                  <MotionBlur />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton fx:id="btnSlot18" layoutX="25.0" layoutY="260.0" onAction="#btnSlot18OnAction" prefHeight="120.0" prefWidth="105.0" style="-fx-background-color: #3c6382;" styleClass="button-style" stylesheets="@../cssFiles/buttonStyle.css" text="Available" textFill="#CCDBDC">
+               <font>
+                  <Font name="Serif Bold" size="13.0" />
+               </font>
+               <effect>
+                  <MotionBlur />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton fx:id="btnSlot24" layoutX="25.0" layoutY="304.0" onAction="#btnSlot24OnAction" prefHeight="120.0" prefWidth="105.0" style="-fx-background-color: #3c6382;" styleClass="button-style" stylesheets="@../cssFiles/buttonStyle.css" text="Available" textFill="#CCDBDC">
+               <font>
+                  <Font name="Serif Bold" size="13.0" />
+               </font>
+               <effect>
+                  <MotionBlur />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton fx:id="btnSlot30" layoutX="25.0" layoutY="348.0" onAction="#btnSlot30OnAction" prefHeight="120.0" prefWidth="105.0" style="-fx-background-color: #3c6382;" styleClass="button-style" stylesheets="@../cssFiles/buttonStyle.css" text="Available" textFill="#CCDBDC">
+               <font>
+                  <Font name="Serif Bold" size="13.0" />
+               </font>
+               <effect>
+                  <MotionBlur />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+         </children>
+      </VBox>
+   </children>
+</HBox>

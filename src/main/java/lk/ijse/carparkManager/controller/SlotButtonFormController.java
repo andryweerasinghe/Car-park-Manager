@@ -11,10 +11,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.event.ActionEvent;
+import lk.ijse.carparkManager.bo.BOFactory;
+import lk.ijse.carparkManager.bo.VehicleBo;
 import lk.ijse.carparkManager.dto.VehicleDTO;
-import lk.ijse.carparkManager.model.AddVehicleModel;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class SlotButtonFormController implements Initializable {
@@ -41,12 +43,17 @@ public class SlotButtonFormController implements Initializable {
 
     private int slotId;
 
-    private final AddVehicleModel addVehicleModel = new AddVehicleModel();
+    VehicleBo vehicleBo = (VehicleBo) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.VEHICLE);
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 //        System.out.println(slotId);
-        VehicleDTO vehicleDetails = addVehicleModel.getVehicleDetails(slotId);
+        VehicleDTO vehicleDetails = null;
+        try {
+            vehicleDetails = vehicleBo.getVehicleDetails(slotId);
+        } catch (SQLException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
         String vehicleNo = vehicleDetails.getVehicle_no();
         String type = vehicleDetails.getType();
         String brand = vehicleDetails.getBrand();

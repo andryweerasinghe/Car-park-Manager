@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #e58e26;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.carparkManager.controller.LoginFormController">
+   <children>
+      <ImageView fitHeight="593.0" fitWidth="826.0" opacity="0.7" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icon/m2i8H7G6A0A0N4N4.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="500.0" fitWidth="510.0" opacity="0.89" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icon/pngegg.png" />
+         </image>
+      </ImageView>
+      <JFXButton fx:id="login" layoutX="622.0" layoutY="337.0" onMouseClicked="#login" prefHeight="40.0" prefWidth="102.0" scaleX="1.2" scaleY="1.2" style="-fx-background-radius: 18; -fx-background-color: #0c2461;" text="Login" textFill="WHITE">
+         <font>
+            <Font name="Lato Light Italic" size="20.0" />
+         </font></JFXButton>
+      <TextField fx:id="username" layoutX="591.0" layoutY="220.0" opacity="0.9" promptText="Username" scaleX="1.2" scaleY="1.2">
+         <font>
+            <Font name="Kinnari" size="13.0" />
+         </font></TextField>
+      <Label fx:id="register" layoutX="646.0" layoutY="389.0" onMouseClicked="#Register" scaleX="1.2" scaleY="1.2" text="Register?" textFill="#0e598f" underline="true">
+         <font>
+            <Font name="Ubuntu Medium" size="12.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="126.0" fitWidth="115.0" layoutX="615.0" layoutY="105.0" pickOnBounds="true" preserveRatio="true" scaleX="1.2" scaleY="1.2">
+         <image>
+            <Image url="@../icon/login.png" />
+         </image>
+      </ImageView>
+      <PasswordField fx:id="password" layoutX="576.0" layoutY="277.0" opacity="0.9" prefHeight="40.0" prefWidth="197.0" promptText="Password">
+         <font>
+            <Font name="Kinnari" size="16.0" />
+         </font>
+      </PasswordField>
+   </children>
+</AnchorPane>

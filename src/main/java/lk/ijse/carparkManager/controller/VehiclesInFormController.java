@@ -14,8 +14,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import lk.ijse.carparkManager.bo.BOFactory;
+import lk.ijse.carparkManager.bo.InVehiclesBo;
 import lk.ijse.carparkManager.dto.*;
-import lk.ijse.carparkManager.model.*;
 import javafx.scene.control.*;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.design.JasperDesign;
@@ -50,21 +51,7 @@ public class VehiclesInFormController implements Initializable{
     @FXML
     private TableView<VehicleDTO> tblVehiclesIn;
 
-    private final TicketSpaceDetailsModel ticketSpaceDetailsModel = new TicketSpaceDetailsModel();
-
-    private final TicketModel ticketModel = new TicketModel();
-
-    private final ParkingSlotModel parkingSlotModel = new ParkingSlotModel();
-
-    private final RatesModel ratesModel = new RatesModel();
-
-    private final PaymentsModel paymentsModel = new PaymentsModel();
-
-    private final VehicleTicketDetailsModel vehicleTicketDetailsModel = new VehicleTicketDetailsModel();
-
-    private final AddVehicleModel addVehicleModel = new AddVehicleModel();
-
-    private final OutgoingVehiclesModel outgoingVehiclesModel = new OutgoingVehiclesModel();
+    InVehiclesBo inVehiclesBo = (InVehiclesBo) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.VEHICLES_IN);
 
     ObservableList<VehicleDTO> list;
 
@@ -72,8 +59,12 @@ public class VehiclesInFormController implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        AddVehicleModel vehicleModel = new AddVehicleModel();
-        ObservableList<VehicleDTO> list = FXCollections.observableArrayList(vehicleModel.getVehicleData());
+        ObservableList<VehicleDTO> list = null;
+        try {
+            list = FXCollections.observableArrayList(inVehiclesBo.getVehicleData());
+        } catch (SQLException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
 
         columnId.setCellValueFactory(cellData -> cellData.getValue().idProperty());
         columnSlot.setCellValueFactory(cellData -> cellData.getValue().slot_idProperty());
@@ -87,12 +78,23 @@ public class VehiclesInFormController implements Initializable{
                 button.setOnAction(event -> {
                     VehicleDTO vehicleDTO = getTableView().getItems().get(getIndex());
                     LocalTime now = LocalTime.now();
-                    //below i need to pass the index of the same row as above to the ticket model
-                    VehicleTicketDetailsDTO vehicleTicketDetailsDTO = new VehicleTicketDetailsDTO(Integer.parseInt(vehicleDTO.getId()));
-                    int ticketId = vehicleTicketDetailsModel.getTicketId(vehicleTicketDetailsDTO);
+
+                    String ticketId = null;
+                    try {
+                        ticketId = inVehiclesBo.getTicketId(vehicleDTO.getSlot_id());
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    } catch (ClassNotFoundException e) {
+                        throw new RuntimeException(e);
+                    }
 
 
-                    LocalTime entryTime = ticketSpaceDetailsModel.getEntryTimeForVehicle(Integer.parseInt(vehicleDTO.getSlot_id()));
+                    LocalTime entryTime = null;
+                    try {
+                        entryTime = inVehiclesBo.getEntryTimeForVehicle(vehicleDTO.getSlot_id());
+                    } catch (SQLException | ClassNotFoundException e) {
+                        throw new RuntimeException(e);
+                    }
                     LocalDateTime entryDateTime = LocalDateTime.of(LocalDate.now(), entryTime);
                     LocalDateTime exitDateTime = LocalDateTime.of(LocalDate.now(), now);
                     Duration duration = Duration.between(entryDateTime, exitDateTime);
@@ -104,9 +106,18 @@ public class VehiclesInFormController implements Initializable{
 
                     double totalHours = hours + (double) minutes / 60 + (double) seconds / 3600;
                     double parkingFee = 0;
-                    VehicleDTO vehicleDTO1 = new VehicleDTO(vehicleDTO.getId());
-                    String type = addVehicleModel.retrieveType(vehicleDTO1);
-                    double parkingRatePerHour = ratesModel.getRate(type);
+                    VehicleDTO typeAndDate = null;
+                    try {
+                        typeAndDate = inVehiclesBo.retrieveType(vehicleDTO.getId());
+                    } catch (SQLException | ClassNotFoundException e) {
+                        throw new RuntimeException(e);
+                    }
+                    double parkingRatePerHour = 0;
+                    try {
+                        parkingRatePerHour = inVehiclesBo.getRate(typeAndDate.getType());
+                    } catch (SQLException | ClassNotFoundException e) {
+                        throw new RuntimeException(e);
+                    }
                     //if totalHours < 1 i need to update the parkingFee as the parkingRatePerHour itself
                     if(totalHours < 1){
                         parkingFee = parkingRatePerHour;
@@ -114,40 +125,69 @@ public class VehiclesInFormController implements Initializable{
                         parkingFee = totalHours * parkingRatePerHour;
                     }
 
-                    int nextAvailableId = paymentsModel.getNextAvailableId();
+                    String nextAvailablePaymentId = null;
+                    try {
+                        nextAvailablePaymentId = inVehiclesBo.generateNextPaymentId();
+                    } catch (SQLException | ClassNotFoundException e) {
+                        throw new RuntimeException(e);
+                    }
 
                     String formattedDuration = String.format("%02d:%02d:%02d", hours, minutes, seconds);
 
                     TicketDTO ticketDTO = new TicketDTO(ticketId ,formattedDuration, "paid");
-                    ticketModel.saveCheckOut(ticketDTO);
+                    try {
+                        inVehiclesBo.saveDuration(ticketDTO);
+                    } catch (SQLException | ClassNotFoundException e) {
+                        throw new RuntimeException(e);
+                    }
 
-                    PaymentsDTO paymentsDTO = new PaymentsDTO(nextAvailableId, parkingFee, ticketId);
-                    paymentsModel.save(paymentsDTO);
+                    PaymentsDTO paymentsDTO = new PaymentsDTO(nextAvailablePaymentId, parkingFee, ticketId);
+                    try {
+                        inVehiclesBo.savePayment(paymentsDTO);
+                    } catch (SQLException | ClassNotFoundException e) {
+                        throw new RuntimeException(e);
+                    }
 
                     TicketSpaceDetailsDTO ticketSpaceDetailsDTO = new TicketSpaceDetailsDTO(Integer.parseInt(vehicleDTO.getSlot_id()), now);
-                    ticketSpaceDetailsModel.saveCheckOut(ticketSpaceDetailsDTO);
+                    try {
+                        inVehiclesBo.saveCheckOut(ticketSpaceDetailsDTO);
+                    } catch (SQLException | ClassNotFoundException e) {
+                        throw new RuntimeException(e);
+                    }
 
-                    parkingSlotModel.updateSlotVacant(Integer.parseInt(vehicleDTO.getSlot_id()));
+                    try {
+                        inVehiclesBo.updateSlotVacant(Integer.parseInt(vehicleDTO.getSlot_id()));
+                    } catch (SQLException | ClassNotFoundException e) {
+                        throw new RuntimeException(e);
+                    }
 
-                    OutgoingVehiclesDTO outgoingVehiclesDTO = new OutgoingVehiclesDTO(vehicleDTO.getId(), vehicleDTO.getVehicle_no(), type, vehicleDTO.getVehicle_owner(), vehicleDTO.getSlot_id(), formattedDuration, String.valueOf(parkingFee), String.valueOf(ticketId));
-                    outgoingVehiclesModel.save(outgoingVehiclesDTO);
+                    OutgoingVehiclesDTO outgoingVehiclesDTO = new OutgoingVehiclesDTO(vehicleDTO.getId(), vehicleDTO.getVehicle_no(), typeAndDate.getType(), vehicleDTO.getVehicle_owner(), vehicleDTO.getSlot_id(), formattedDuration, String.valueOf(parkingFee), String.valueOf(ticketId), typeAndDate.getDate());
+                    try {
+                        inVehiclesBo.saveCheckoutVehicle(outgoingVehiclesDTO);
+                    } catch (SQLException | ClassNotFoundException e) {
+                        throw new RuntimeException(e);
+                    }
                     try {
                         JasperDesign load = JRXmlLoader.load(this.getClass().getResourceAsStream("/reports/ticket.jrxml"));
 
                         JasperReport jasperReport = JasperCompileManager.compileReport(load);
 
-                        ResultSet ticketData = outgoingVehiclesModel.getTicketData(Integer.parseInt(vehicleDTO.getId()));
+                        ResultSet ticketData = inVehiclesBo.getTicketData(Integer.parseInt(vehicleDTO.getId()));
 
                         JRResultSetDataSource jrResultSetDataSource = new JRResultSetDataSource(ticketData);
 
                         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, jrResultSetDataSource);
 
                         JasperViewer.viewReport(jasperPrint, false);
-                    } catch (JRException e) {
+                    } catch (JRException | ClassNotFoundException | SQLException e) {
                         throw new RuntimeException(e);
                     }
-                    list.remove(vehicleDTO);
-                    addVehicleModel.deleteVehicleRecord(vehicleDTO);
+                    tblVehiclesIn.getItems().remove(getIndex());
+                    try {
+                        inVehiclesBo.deleteVehicleRecord(vehicleDTO.getId());
+                    } catch (SQLException | ClassNotFoundException e) {
+                        throw new RuntimeException(e);
+                    }
                 });
             }
 

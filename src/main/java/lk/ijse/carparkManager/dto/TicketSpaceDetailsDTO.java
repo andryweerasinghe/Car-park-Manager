@@ -19,7 +19,7 @@ import java.time.LocalTime;
 @Getter
 @Setter
 public class TicketSpaceDetailsDTO {
-    int ticket_id;
+    String ticket_id;
     int space_id;
     LocalTime entry_time;
     LocalTime exit_time;
@@ -29,7 +29,7 @@ public class TicketSpaceDetailsDTO {
         this.exit_time = exit_time;
     }
 
-    public TicketSpaceDetailsDTO(int ticket_id, int space_id, LocalTime entry_time) {
+    public TicketSpaceDetailsDTO(String ticket_id, int space_id, LocalTime entry_time) {
         this.ticket_id = ticket_id;
         this.space_id = space_id;
         this.entry_time = entry_time;

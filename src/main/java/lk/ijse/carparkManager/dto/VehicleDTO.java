@@ -11,6 +11,19 @@ public class VehicleDTO {
     private final StringProperty slot_id = new SimpleStringProperty();
     private final StringProperty brand = new SimpleStringProperty();
     private final StringProperty mobile_no = new SimpleStringProperty();
+    private final StringProperty date = new SimpleStringProperty();
+
+    public String getDate() {
+        return date.get();
+    }
+
+    public StringProperty dateProperty() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date.set(date);
+    }
 
     public String getBrand() {
         return brand.get();
@@ -109,6 +122,10 @@ public class VehicleDTO {
         setVehicle_no(vehicle_no);
         setVehicle_owner(vehicle_owner);
         setSlot_id(slot_id);
+    }
+    public VehicleDTO(String type, String date){
+        setType(type);
+        setDate(date);
     }
     public VehicleDTO(String id){
         setId(id);

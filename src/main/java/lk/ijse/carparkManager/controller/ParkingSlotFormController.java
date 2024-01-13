@@ -16,8 +16,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
-import lk.ijse.carparkManager.model.AddVehicleModel;
-import lk.ijse.carparkManager.model.ParkingSlotModel;
+import lk.ijse.carparkManager.bo.BOFactory;
+import lk.ijse.carparkManager.bo.ParkingSpaceBo;
 
 import java.io.IOException;
 import java.net.URL;
@@ -117,16 +117,19 @@ public class ParkingSlotFormController implements Initializable {
     @FXML
     private JFXButton btnSlot9;
 
-    private final ParkingSlotModel parkingSlotModel = new ParkingSlotModel();
-
-    private final AddVehicleModel addVehicleModel = new AddVehicleModel();
+    ParkingSpaceBo parkingSpaceBo = (ParkingSpaceBo) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.PARKING_SPACE);
 
     @FXML
     private void handleButtonAction(ActionEvent event) {
         JFXButton clickedButton = (JFXButton) event.getSource();
         int buttonIndex = getButtonIndex(clickedButton);
         int slotId = buttonIndex + 1;
-        boolean isOccupied = parkingSlotModel.checkStatus(slotId);
+        boolean isOccupied = false;
+        try {
+            isOccupied = parkingSpaceBo.checkSlotStatus(slotId);
+        } catch (SQLException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
         if(!isOccupied){
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("No Information");
@@ -184,10 +187,9 @@ public class ParkingSlotFormController implements Initializable {
             button.getStyleClass().add("button-style:hover");
             button.getStyleClass().add("button-style .container");
         }
-        ParkingSlotModel parkingSlotModel = new ParkingSlotModel();
 
         try {
-            parkingSlotModel.assignSlot(buttonsArray);
+            parkingSpaceBo.assignSlot(buttonsArray);
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace(); // Handle or log the exception appropriately
         }

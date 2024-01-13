@@ -1,0 +1,6 @@
+.error-text-field {
+    -fx-border-color: red;
+    -fx-border-width: 2px;
+    -fx-background-color: yellow; /* Temporary color for debugging */
+
+}

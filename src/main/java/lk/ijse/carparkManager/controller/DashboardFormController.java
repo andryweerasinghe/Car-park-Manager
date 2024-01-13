@@ -15,10 +15,11 @@ import javafx.scene.chart.PieChart;
 
 import javafx.beans.binding.Bindings;
 import javafx.scene.control.Label;
-import lk.ijse.carparkManager.model.AddVehicleModel;
-import lk.ijse.carparkManager.model.OutgoingVehiclesModel;
+import lk.ijse.carparkManager.bo.BOFactory;
+import lk.ijse.carparkManager.bo.DashboardBo;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class DashboardFormController implements Initializable {
@@ -34,14 +35,21 @@ public class DashboardFormController implements Initializable {
     @FXML
     private Label lblVehiclesOut;
 
-    private final AddVehicleModel addVehicleModel = new AddVehicleModel();
-
-    private final OutgoingVehiclesModel outgoingVehiclesModel = new OutgoingVehiclesModel();
-
+    DashboardBo dashboardBo = (DashboardBo) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.DASHBOARD);
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        int vehiclesIn = addVehicleModel.getCount();
-        int vehiclesOut = outgoingVehiclesModel.getCount();
+        int vehiclesIn = 0;
+        try {
+            vehiclesIn = dashboardBo.getVehiclesInCount();
+        } catch (SQLException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        int vehiclesOut = 0;
+        try {
+            vehiclesOut = dashboardBo.getOutgoingVehiclesCount();
+        } catch (SQLException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
         lblParkedVehicles.setText(String.valueOf(vehiclesIn + vehiclesOut));
         lblVehiclesIn.setText(String.valueOf(vehiclesIn));
         lblVehiclesOut.setText(String.valueOf(vehiclesOut));

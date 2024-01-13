@@ -16,12 +16,12 @@ import lombok.NoArgsConstructor;
 @Data
 
 public class PaymentsDTO {
-    int id;
+    String id;
     String type;
     double amount;
-    int ticket_id;
+    String ticket_id;
 
-    public PaymentsDTO(int id, double amount, int ticket_id) {
+    public PaymentsDTO(String id, double amount, String ticket_id) {
         this.id = id;
         this.amount = amount;
         this.ticket_id = ticket_id;

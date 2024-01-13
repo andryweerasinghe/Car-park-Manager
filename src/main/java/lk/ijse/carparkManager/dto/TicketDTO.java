@@ -16,16 +16,16 @@ import java.time.LocalTime;
 //@AllArgsConstructor
 @Data
 public class TicketDTO {
-    int ticket_id;
+    String ticket_id;
     String status;
     String duration;
 
-    public TicketDTO(int ticket_id, String duration, String status) {
+    public TicketDTO(String ticket_id, String duration, String status) {
         this.ticket_id = ticket_id;
         this.duration = duration;
         this.status = status;
     }
-    public TicketDTO(int ticket_id, String status) {
+    public TicketDTO(String ticket_id, String status) {
         this.ticket_id = ticket_id;
         this.status = status;
     }

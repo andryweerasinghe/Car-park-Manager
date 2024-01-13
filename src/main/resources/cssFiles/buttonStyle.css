@@ -1,0 +1,40 @@
+.button-style {
+    -fx-background-color: #e58e26; /* Background color */
+    -fx-text-fill: white; /* Text color */
+    -fx-font-family: "Serif Bold";
+    -fx-font-size: 13.0;
+    -fx-padding: 8px 15px; /* Padding around the text */
+    -fx-border-color: #80CED7; /* Border color */
+    -fx-border-width: 3px; /* Border width */
+    -fx-border-radius: 40px; /* Border radius */
+    -fx-background-radius: 42px;
+    -fx-cursor: hand; /* Cursor on hover */
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 5, 5); /* Shadow effect */
+    -fx-font-weight: bold; /* Maintain bold font weight on hover */
+
+}
+
+/* Hover state */
+.button-style:hover {
+    -fx-background-color: #003249; /* Background color on hover */
+    -fx-border-color: #003249; /* Border color on hover */
+    -fx-font-weight: bold; /* Maintain bold font weight on hover */
+
+}
+
+.button-style .container {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+    -fx-border-width: 0;
+    -fx-border-insets: 0;
+}
+
+#btnSlot1, #btnSlot7, #btnSlot13, #btnSlot19,
+#btnSlot25, #btnSlot2, #btnSlot8, #btnSlot14,
+#btnSlot20, #btnSlot26, #btnSlot3, #btnSlot9,
+#btnSlot15, #btnSlot21, #btnSlot27, #btnSlot4,
+#btnSlot10, #btnSlot16, #btnSlot22, #btnSlot28,
+#btnSlot5, #btnSlot11, #btnSlot17, #btnSlot23,
+#btnSlot29, #btnSlot6, #btnSlot12, #btnSlot18,
+#btnSlot24, #btnSlot30

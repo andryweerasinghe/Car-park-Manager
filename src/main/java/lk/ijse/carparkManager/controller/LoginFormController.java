@@ -12,8 +12,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import lk.ijse.carparkManager.bo.BOFactory;
+import lk.ijse.carparkManager.bo.UserBo;
 import lk.ijse.carparkManager.dto.LoginDTO;
-import lk.ijse.carparkManager.model.LoginModel;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -28,7 +29,7 @@ public class LoginFormController {
         @FXML
         private TextField password;
 
-        private final LoginModel loginModel = new LoginModel();
+        UserBo userBo = (UserBo) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.USER);
 
         @FXML
         void Register(MouseEvent event) {
@@ -58,7 +59,7 @@ public class LoginFormController {
 
                 LoginDTO loginDTO = new LoginDTO(usernameText, passwordText);
 
-                boolean login = loginModel.login(loginDTO);
+                boolean login = userBo.login(loginDTO);
 
                 if (login) {
 
@@ -78,7 +79,7 @@ public class LoginFormController {
                                 Parent root = fxmlLoader.load();
 
                                 MainFormController mainFormController = fxmlLoader.getController(); // passing the values from the login form text fields to the main controller
-                                LoginDTO loginDTO1 = loginModel.getUserInfo(usernameText);
+                                LoginDTO loginDTO1 = userBo.getUserInfo(usernameText);
                                 mainFormController.setUser(loginDTO1);
 
                                 Stage stage = new Stage();

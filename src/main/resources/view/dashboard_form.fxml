@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="685.0" prefWidth="1070.0" style="-fx-background-color: CCDBDC;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.carparkManager.controller.DashboardFormController">
+   <children>
+      <AnchorPane prefHeight="685.0" prefWidth="1070.0">
+         <children>
+            <HBox alignment="TOP_CENTER" layoutY="-1.0" prefHeight="172.0" prefWidth="1070.0" style="-fx-spacing: 240;">
+               <children>
+                  <Label fx:id="lblParkedVehicles" contentDisplay="TOP" text="0">
+                     <graphic>
+                        <ImageView fitHeight="90.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icon/car-65.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font name="Z003-MediumItalic" size="37.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblVehiclesIn" contentDisplay="TOP" layoutX="294.0" layoutY="10.0" text="0">
+                     <graphic>
+                        <ImageView fitHeight="90.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icon/car-65 orange.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font name="Z003-MediumItalic" size="37.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblVehiclesOut" contentDisplay="TOP" layoutX="352.0" layoutY="10.0" text="0">
+                     <graphic>
+                        <ImageView fitHeight="90.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icon/car-65 green.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font name="Z003-MediumItalic" size="37.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <Label alignment="CENTER" layoutX="103.0" layoutY="171.0" prefHeight="18.0" prefWidth="199.0" text="TOTAL VEHICLES PARKED">
+               <font>
+                  <Font name="Liberation Serif" size="15.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="469.0" layoutY="171.0" prefHeight="16.0" prefWidth="133.0" text="VEHICLES IN">
+               <font>
+                  <Font name="Liberation Serif" size="15.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="796.0" layoutY="171.0" prefHeight="16.0" prefWidth="133.0" text="VEHICLES OUT">
+               <font>
+                  <Font name="Liberation Serif" size="15.0" />
+               </font>
+            </Label>
+            <PieChart fx:id="piechart1" layoutX="54.0" layoutY="225.0" prefHeight="415.0" prefWidth="415.0" />
+            <PieChart fx:id="piechart2" layoutX="469.0" layoutY="225.0" prefHeight="415.0" prefWidth="415.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</HBox>

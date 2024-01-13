@@ -11,8 +11,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import lk.ijse.carparkManager.dto.LoginDTO;
-import lk.ijse.carparkManager.model.AddVehicleModel;
-import lk.ijse.carparkManager.model.LoginModel;
 
 import java.io.IOException;
 import java.net.URL;
@@ -27,9 +25,6 @@ public class MainFormController implements Initializable {
     private BorderPane bp;
     @FXML
     private AnchorPane ap;
-
-    private final LoginModel loginModel = new LoginModel();
-
     private LoginDTO loginDTO;
 
     @Override

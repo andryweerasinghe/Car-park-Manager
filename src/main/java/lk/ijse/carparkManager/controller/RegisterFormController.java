@@ -12,9 +12,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import lk.ijse.carparkManager.RegExPatterns.RegExPatterns;
+import lk.ijse.carparkManager.bo.AddVehicleBo;
+import lk.ijse.carparkManager.bo.BOFactory;
+import lk.ijse.carparkManager.bo.UserBo;
 import lk.ijse.carparkManager.dto.RegistrationDTO;
-import lk.ijse.carparkManager.model.RegistrationModel;
-
 
 import java.io.IOException;
 import java.net.URL;
@@ -47,7 +48,7 @@ public class RegisterFormController implements Initializable {
     @FXML
     private TextField second_name;
 
-    private final RegistrationModel registrationModel = new RegistrationModel();
+    UserBo userBo = (UserBo) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.USER);
 
     private final String[] roles = {"Attendant", "Manager"};
 
@@ -60,7 +61,7 @@ public class RegisterFormController implements Initializable {
 
     private void generateId() {
         try {
-            String userId = registrationModel.generateNextUserId();
+            String userId = userBo.generateNextUserId();
             user_id.setText(userId);
         } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
@@ -73,9 +74,9 @@ public class RegisterFormController implements Initializable {
         String user_name = firstNameText + secondNameText;
         String emailText = email.getText();
 
-        int mobileText = 0;
+        String mobileText = null;
         if (!mobile.getText().isEmpty()){
-            mobileText = Integer.parseInt(mobile.getText());
+            mobileText = mobile.getText();
         }
 
         String passwordText = password.getText();
@@ -104,7 +105,7 @@ public class RegisterFormController implements Initializable {
 
             String userIdText = user_id.getText();
             RegistrationDTO registrationDTO = new RegistrationDTO(userIdText,firstNameText+" "+secondNameText, jobRole, emailText, mobileText, passwordText, user_name);
-            registrationModel.save(registrationDTO);
+            userBo.save(registrationDTO);
 
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/login_form.fxml"));
 

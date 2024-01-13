@@ -22,6 +22,18 @@ public class OutgoingVehiclesDTO {
     private final StringProperty duration = new SimpleStringProperty();
     private final StringProperty parking_fee = new SimpleStringProperty();
     private final StringProperty ticket_id = new SimpleStringProperty();
+    private final StringProperty date = new SimpleStringProperty();
+    public String getDate() {
+        return date.get();
+    }
+
+    public StringProperty dateProperty() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date.set(date);
+    }
 
     public String getTicket_id() {
         return ticket_id.get();
@@ -125,7 +137,7 @@ public class OutgoingVehiclesDTO {
         setVehicle_owner(vehicle_owner);
         setVehicle_no(vehicle_no);
     }
-    public OutgoingVehiclesDTO(String outgoing_vehicle_id, String vehicle_no, String type, String vehicle_owner, String slot_id, String duration, String parking_fee, String ticket_id){
+    public OutgoingVehiclesDTO(String outgoing_vehicle_id, String vehicle_no, String type, String vehicle_owner, String slot_id, String duration, String parking_fee, String ticket_id, String date){
         setOutgoing_vehicle_id(outgoing_vehicle_id);
         setVehicle_no(vehicle_no);
         setType(type);
@@ -134,5 +146,6 @@ public class OutgoingVehiclesDTO {
         setDuration(duration);
         setParking_fee(parking_fee);
         setTicket_id(ticket_id);
+        setDate(date);
     }
 }
